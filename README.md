@@ -20,10 +20,27 @@ opkg update && opkg install libugpio
 
 You can then transfer the binary `tm1637_example_display` and execute it. 
 
+## Wireup
+
+The module's 4 pins should be connected to the Omega2 as follows:
+
+* GND -> GND 
+* VCC -> 3.3V
+* CLK -> any free GPIO 
+* DIO -> any free GPIO  
+
+The demo program will ask which pin you chose for clock and data during runtime and use those.
+
+## Media 
+
+Working version: 
+
+![working_module](working.jpg)
+
 ## ToDos 
 
-* check if this code works with a real display at all
-* write better controllable example program
+* ~~check if this code works with a real display at all~~ **Yes it does!**
+* ~~write better controllable example program~~ **Now configurable via console input**
 * write Python version which only uses pyOnionGpio 
 * package nicely
 
