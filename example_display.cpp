@@ -10,10 +10,25 @@ int main() {
 
 	printf("Beginning test program\n");
 
+	//Enter clock and dio pins via command line
+	int clk = 0, dio = 0;
+
+	printf("Enter CLK pin: ");
+	fflush(stdout);
+	if( scanf("%d", &clk) != 1 ) {
+		printf("Failed to parse input\n");
+		return -1;
+	}
+
+	printf("Enter DIO pin: ");
+	fflush(stdout);
+	if( scanf("%d", &dio) != 1 ) {
+		printf("Failed to parse input\n");
+		return -1;
+	}
+
 	//Create display on these two pins
-	uint8_t pinClk = 18;
-	uint8_t pinData = 19;
-	TM1637Display display(pinClk, pinData);
+	TM1637Display display((uint8_t) clk, (uint8_t) dio);
 
 	// All segments on, max brightness
 	uint8_t data[] = { 0xff, 0xff, 0xff, 0xff };
@@ -22,8 +37,6 @@ int main() {
 
 	//do fany demo
 	fancy_demo(display);
-
-	sleep(10);
 
 	printf("Goodbye\n");
 
