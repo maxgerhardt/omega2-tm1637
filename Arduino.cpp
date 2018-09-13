@@ -8,7 +8,7 @@
 
 void pinMode(uint8_t pin, uint8_t mode) {
 	int rq = 0, rv = 0;
-	//request pin. Pulse reset. release it.
+	//request pin.
 	if ((rq = gpio_is_requested(pin)) < 0) {
 		perror("gpio_is_requested");
 	}
@@ -22,7 +22,7 @@ void pinMode(uint8_t pin, uint8_t mode) {
 
 	if (mode == INPUT || mode == INPUT_PULLUP) {
 		// set to input direction
-		printf("> setting to input\n");
+		//printf("> setting to input\n");
 		if ((rv = gpio_direction_input(pin)) < 0) {
 			perror("gpio_direction_input");
 		}
@@ -30,7 +30,7 @@ void pinMode(uint8_t pin, uint8_t mode) {
 		//no support for INPUT_PULLUP at the moment,
 		//pins will be left floating..
 	} else if (mode == OUTPUT) {
-		if ((rv = gpio_direction_output(pin, HIGH)) < 0) {
+		if ((rv = gpio_direction_output(pin, LOW)) < 0) {
 			perror("gpio_direction_input");
 		}
 	}
@@ -53,20 +53,20 @@ unsigned long millis(void) {
 }
 
 unsigned long micros(void) {
-    long            ms; // Milliseconds
-    time_t          s;  // Seconds
-    struct timespec spec;
+	long ms; // Milliseconds
+	time_t s;  // Seconds
+	struct timespec spec;
 
-    clock_gettime(CLOCK_REALTIME, &spec);
+	clock_gettime(CLOCK_REALTIME, &spec);
 
-    s  = spec.tv_sec;
-    ms = round(spec.tv_nsec / 1.0e6); // Convert nanoseconds to milliseconds
-    if (ms > 999) {
-        s++;
-        ms = 0;
-    }
+	s = spec.tv_sec;
+	ms = round(spec.tv_nsec / 1.0e6); // Convert nanoseconds to milliseconds
+	if (ms > 999) {
+		s++;
+		ms = 0;
+	}
 
-    return (s * 1000UL) + ms;
+	return (s * 1000UL * 1000UL) + (ms * 1000UL) + spec.tv_nsec / 1000UL;
 }
 
 void delay(unsigned long millis) {
