@@ -37,7 +37,7 @@ Working version:
 
 ![working_module](working.jpg)
 
-## Pytho version
+## Python version
 
 The `TM1637.py` module was written using [pyOnionGpio](https://docs.onion.io/omega2-docs/gpio-python-module.html).
 
