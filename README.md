@@ -37,11 +37,30 @@ Working version:
 
 ![working_module](working.jpg)
 
+## Pytho version
+
+The `TM1637.py` module was written using [pyOnionGpio](https://docs.onion.io/omega2-docs/gpio-python-module.html).
+
+To install it on your Omega2: 
+
+```sh
+opkg update
+opkg install python-light pyOnionGpio
+```
+
+Then, download the `TM1637.py` and `tm1637_demo.py` into your `/root` folder. 
+
+Look at the demo code to maybe change this pins. 
+
+Run the example by simply doing `python tm1637_demo.py`. The display should light up and then display '0123'. 
+
+The demo script also contains a fancier demo. Look into the source code to activate that function.
+
 ## ToDos 
 
 * ~~check if this code works with a real display at all~~ **Yes it does!**
 * ~~write better controllable example program~~ **Now configurable via console input**
-* write Python version which only uses pyOnionGpio 
+* ~~write Python version which only uses pyOnionGpio~~
 * package nicely
 
 ## License
